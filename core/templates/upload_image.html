@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}upload image{% endblock title %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="py-5 text-center  ">
+        <h1 class="mb-3"> Upload image </h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit"  class="btn btn-danger" value="submit">
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row">
+ {% for img in img  %}
+<div class="col-sm-4">
+    <div class="card m-2">
+        <img src="{{img.image.url}}" alt="#" class="card-img-top" height="200px">
+    </div>
+    <div class="card-footer"><small class="text-muted">{{img.date}}</small>
+    <small class="text-center m-2 p-2 btn btn-danger text-muted"><a  href="{% url 'delete_image' img.id %}">delete</a></small>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+
+
+
+
+{% endblock content %}
